@@ -55,9 +55,6 @@ terms = set()
 for document in stemming:
     for term in document.split():
         terms.add(term)
-for index, term in enumerate(terms):
-    print(f"Index term {index + 1}: {term}")
-print("\n")
 
 #Building the document-term matrix by using the tf-idf weights.
 #--> add your Python code here
@@ -73,9 +70,8 @@ for document in stemming:
         #counts the number of times the term was in the document
         termCount = document.split().count(term)
         tf[term] = termCount / totalTerms
-        print(f"Term: {term}, TF: {tf[term]:.2f}")
+      
     docTermMatrix.append(tf)
-    print("\n")
 
 idf = {}
 #total number of documents in the set
@@ -84,8 +80,7 @@ for term in terms:
     #counts the number of documents where the term is
     docCount = sum(1 for document in stemming if term in document.split())
     idf[term] = math.log10(docNum / docCount)
-    print(f"Term: {term}, IDF: {idf[term]:.2f}")
-print("\n")
+  
 
 tfidfMatrix = []
 for doc in docTermMatrix:
